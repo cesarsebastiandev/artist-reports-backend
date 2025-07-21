@@ -31,18 +31,24 @@
 <body>
 
 
-    <h2 class="centrar">Listado de Plantas</h2>
+    <h2 class="centrar">List of Artists</h2>
 
     <table>
         <thead>
             <tr>
-                <th>id</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Instrument</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($artist as $art)
+            @foreach ($artists as $art)
                 <tr>
                     <td>{{ $art->id }}</td>
+                    <td>{{ $art->name }}</td>
+                    <td>{{ $art->lastname }}</td>
+                    <td>{{ $art->instrument }}</td>
                 </tr>
             @endforeach
         </tbody>

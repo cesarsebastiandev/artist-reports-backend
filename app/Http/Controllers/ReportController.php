@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Artist;
 use Illuminate\Http\Request;
-// use Dompdf/Dompdf;
+use Dompdf\Dompdf;
 class ReportController extends Controller
 {
-     public function getPlantsPDF(Request $request)
+     public function generatePDF(Request $request)
     {
-        // Obtener los registros
+        // Obtain the records
         $artists = Artist::select('id', 'name', 'lastname', 'instrument')->get();
 
-        // Verificar si se encontraron registros
+        // Check
         if ($artists->isEmpty()) {
             return response()->json(['error' => 'No data'], 404);
         }
 
-        // Cargar vista para PDF
-        $html = view('pdf_reports.artists', ['artists' => $artists])->render();
+        //Load pdf view
+        $html = view('pdf_reports.artist', ['artists' => $artists])->render();
 
-        // Crear el PDF
+        // Create the PDF
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
